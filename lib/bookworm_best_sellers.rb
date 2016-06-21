@@ -1,5 +1,4 @@
-require "bookworm_best_sellers/version"
+require_relative "bookworm_best_sellers/version"
+require_relative "bookworm_best_sellers/cli"
 
-module BookwormBestSellers
-  # Your code goes here...
-end
+
