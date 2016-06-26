@@ -5,8 +5,17 @@ end
 class BookwormBestSellers::CLI
 
   def call
-    puts "Best Sellers for this week - 6/19/2016\n\n"
-    puts(<<-EOT.gsub /^\s+/, "")
+    list_books
+    prompt
+  end
+
+  def week_label
+    "6/19/2016"
+  end
+
+  def list_books
+    puts "Best Sellers for this week - #{week_label}\n\n"
+    puts(<<-DOC.gsub /^\s+/, "")
       1 - "The 10 Best People" - John Smith 
       2 - "Name Here" - Author Here
       3 - "Name Here" - Author Here
@@ -17,8 +26,13 @@ class BookwormBestSellers::CLI
       8 - "Name Here" - Author Here
       9 - "Name Here" - Author Here
       10 - "Name Here" - Author Here
-    EOT
+    DOC
+  end
+
+  def prompt
     puts "\nType a number to learn more about a book or type EXIT."
+    input = gets.strip
+    
   end
 
 end
