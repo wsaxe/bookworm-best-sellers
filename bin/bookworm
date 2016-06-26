@@ -1,4 +1,6 @@
 #!/usr/bin/ruby
-require "./lib/bookworm_best_sellers"
+#require "./lib/bookworm_best_sellers"
+require "bundler/setup"
+require "bookworm_best_sellers"
 
 BookwormBestSellers::CLI.new.call
