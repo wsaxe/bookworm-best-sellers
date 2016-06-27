@@ -1,3 +1,6 @@
+module BookwormBestSellers
+end
+
 class BookwormBestSellers::Book
   attr_accessor :title, :author, :description
 
