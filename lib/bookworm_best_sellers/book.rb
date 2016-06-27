@@ -1,10 +1,16 @@
 class BookwormBestSellers::Book
   attr_accessor :title, :author, :description
 
+  def self.scrape_title
+    doc = Nokogiri::HTML(open("http://www.barnesandnoble.com/b/the-new-york-times-bestsellers-hardcover-nonfiction/_/N-1p5q"))
+    titles = doc.search("p.product-info-title").text
+    title_array = titles.split("\n").reject { |item| item.nil? || item == "" }
+    clean_title_array = title_array.map { |ind_title| ind_title[0...-13] }
+  end
 
   def self.this_week
     book_1 = self.new
-    book_1.title = "Rich Dad Poor Dad"
+    book_1.title = "#{self.scrape_title[0]}"
     book_1.author = "Robert Kiyosaki"
     book_1.description = "Here is some info on book 1..."
 
