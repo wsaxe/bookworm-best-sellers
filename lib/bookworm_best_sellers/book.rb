@@ -1,16 +1,23 @@
 class BookwormBestSellers::Book
   attr_accessor :title, :author, :description
+  @@current_book_list = []
 
   def self.this_week
-    self.scrape_books
+    if @@current_book_list == []
+      @@current_book_list = self.scrape_books
+    else
+      @@current_book_list
+    end
   end
 
   def self.scrape_books
     books = []
     self.scrape_titles.each do |ind_title|
-      book = self.new
-      book.title = ind_title
-      books << book
+      if books.length < 10
+        book = self.new
+        book.title = ind_title
+        books << book
+      end
     end
     books.each.with_index(0) do |ind_book, i|
       ind_book.author = self.scrape_authors[i]
@@ -26,11 +33,7 @@ class BookwormBestSellers::Book
 
   def self.scrape_authors
     doc = Nokogiri::HTML(open("http://www.barnesandnoble.com/b/the-new-york-times-bestsellers-hardcover-nonfiction/_/N-1p5q"))
-    author_array = doc.search("span.contributor").to_s.split("/a").map! { |author| author[-25..-1] }.reject { |item| item.nil? || item == "" }
-    author_array.map! do |pile|
-      pile.split(">")[1]
-    end
-    author_array.map! { |ind_author| ind_author[0...-1] }
+    author_array = doc.search("span.contributor").to_s.split("/a").map! { |author| author[-25..-1] }.reject { |author| author.nil? || author == "" }.map! { |author| author.split(">")[1] }.map! { |ind_author| ind_author[0...-1] }
     author_array
   end
 
