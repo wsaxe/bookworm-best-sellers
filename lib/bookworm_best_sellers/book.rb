@@ -21,5 +21,19 @@ class BookwormBestSellers::Book
     books
   end
 
+  def self.scrape_console
+    doc = Nokogiri::HTML(open("http://www.barnesandnoble.com/b/the-new-york-times-bestsellers-hardcover-nonfiction/_/N-1p5q"))
+    author_array = doc.search("span.contributor").to_s.split("/a")
+    author_array.map! do |jumble|
+      jumble[-25..-1]
+    end
+    #clean_array = []
+    #author_array.each do |author|
+      #clean_author = author.text
+      #clean_array << clean_author
+    #end
+    #clean_array
+    author_array
+  end
 
 end
