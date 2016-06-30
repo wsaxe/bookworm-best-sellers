@@ -1,4 +1,4 @@
 source 'https://rubygems.org'
 
-# Specify your gem's dependencies in bookworm_best_sellers.gemspec
+# Specify your gem's dependencies in daily_deal.gemspec
 gemspec

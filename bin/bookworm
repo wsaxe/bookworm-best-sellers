@@ -1,5 +1,5 @@
-#!/usr/bin/ruby
-#require "./lib/bookworm_best_sellers"
+#!/usr/bin/env ruby
+
 require "bundler/setup"
 require "bookworm_best_sellers"
 

@@ -2,39 +2,41 @@ class BookwormBestSellers::CLI
 
   def call
     list_books
-    prompt
-  end
-
-  def week_label
-    "6/19/2016"
+    menu
+    goodbye
   end
 
   def list_books
-    puts "\nBest Sellers for this week - #{week_label}\n\n"
+    # here doc - http://blog.jayfields.com/2006/12/ruby-multiline-strings-here-doc-or.html
+    puts "Best Sellers for Week of #{current_week}"
     @books = BookwormBestSellers::Book.this_week
     @books.each.with_index(1) do |book, i|
-      puts "#{i} - #{book.title} - #{book.author}"
+      puts "#{i}. #{book.author} - #{book.title}"
     end
   end
 
-  def prompt
-    puts "\nType a number to learn more about a book, LIST to see the list again, or type EXIT."
-    input = gets.strip.downcase
-    if input.to_i > 0 && input.to_i < 11
-      puts "\n#{@books[input.to_i-1].description}"
-      prompt
-    elsif input == "exit"
-      exit_message
-    elsif input == "list"
-      call
-    else
-      puts "\nINVALID CHOICE"
-      prompt
+  def current_week
+    "6/26/2016"
+  end
+
+  def menu
+    input = nil
+    while input != "exit"
+      puts "Enter the number of the book you'd like more info on or type list to see the books again or type exit:"
+      input = gets.strip.downcase
+
+      if input.to_i > 0
+        the_book = @books[input.to_i-1]
+        puts "#{the_book.name} - #{the_book.author}"
+      elsif input == "list"
+        list_deals
+      else
+        puts "Not sure what you want, type list or exit."
+      end
     end
   end
 
-  def exit_message
-    puts "\nThanks for using Bookworm! Have a great day!\n\n"
+  def goodbye
+    puts "Thank you for using bookworm!"
   end
-
 end
