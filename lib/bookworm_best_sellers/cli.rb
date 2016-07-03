@@ -1,13 +1,14 @@
 class BookwormBestSellers::CLI
 
   def call
+    puts "\nLOADING BEST SELLERS..."
     list_books
     prompt
   end
 
   def list_books
-    puts "\nBest Sellers - Week of #{current_week}\n\n"
     @books = BookwormBestSellers::Book.this_week
+    puts "\nBest Sellers - Week of #{current_week}\n\n"
     @books.each.with_index(1) do |book, i|
       puts "#{i}. #{book.title} - #{book.author}"
     end
@@ -32,7 +33,8 @@ class BookwormBestSellers::CLI
     elsif input == "exit"
       exit_message
     elsif input == "list"
-      call
+      list_books
+      prompt
     else
       puts "\nINVALID CHOICE"
       prompt

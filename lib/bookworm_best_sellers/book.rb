@@ -1,6 +1,7 @@
 class BookwormBestSellers::Book
   attr_accessor :title, :author, :description, :url
   @@current_book_list = []
+  @@current_descriptions = []
   @@doc = Nokogiri::HTML(open("http://www.barnesandnoble.com/b/the-new-york-times-bestsellers-hardcover-nonfiction/_/N-1p5q"))
 
   def self.this_week
@@ -26,6 +27,9 @@ class BookwormBestSellers::Book
     books.each.with_index(0) do |ind_book, i|
       ind_book.url = ["http://www.barnesandnoble.com",self.scrape_urls[i]].join()
     end
+    books.each.with_index(0) do |ind_book, i|
+      ind_book.description = self.scrape_descriptions[i]
+    end
     books
   end
 
@@ -39,6 +43,17 @@ class BookwormBestSellers::Book
 
   def self.scrape_urls
     [*0..9].map! { |index| @@doc.css("p.product-info-title a")[index]['href'].split(";")[0] }
+  end
+
+  def self.scrape_descriptions
+    if @@current_descriptions == []
+      @@current_descriptions = [*0..9].map! do |i|
+        url = ["http://www.barnesandnoble.com",self.scrape_urls[i]].join()
+        Nokogiri::HTML(open(url)).css('div#productInfoOverview p').text.split("\n").reject { |item| item.nil? || item == "" }[0]
+      end
+    else
+      @@current_descriptions
+    end
   end
 
 end
