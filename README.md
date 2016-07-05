@@ -1,4 +1,4 @@
-# BookwormBestSellers
+# Bookworm Best Sellers
 
 The Bookworm gem provides the current week's bestselling books in the USA according to the New York Times. Best Selling Book list is live updated when the gem is executed via the CLI in bin/bookworm
 
@@ -30,7 +30,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/wsaxe/bookworm_best_sellers. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/wsaxe/bookworm-best-sellers. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](contributor-covenant.org) code of conduct.
 
 
 ## License
