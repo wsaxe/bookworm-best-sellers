@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    bookworm_best_sellers (0.1.0)
+    bookworm_best_sellers (1.0.0)
       nokogiri
 
 GEM
