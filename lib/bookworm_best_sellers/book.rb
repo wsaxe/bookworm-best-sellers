@@ -38,7 +38,7 @@ class BookwormBestSellers::Book
   end
 
   def self.scrape_authors
-    @@doc.search("span.contributor").to_s.split("/a").map! { |author| author[-25..-1] }.reject { |author| author.nil? || author == "" }.map! { |author| author.split(">")[1] }.map! { |ind_author| ind_author[0...-1] }
+    @@doc.search("span.contributor").to_s.split("/a").map! { |author| author[-25..-1] }.reject { |author| author.nil? || author == "" }.map! { |author| author.split(">")[1] }.compact.map! { |ind_author| ind_author[0...-1] }
   end
 
   def self.scrape_urls
