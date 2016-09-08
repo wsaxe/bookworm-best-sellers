@@ -7,7 +7,7 @@ class BookwormBestSellers::CLI
   end
 
   def list_books
-    @books = BookwormBestSellers::Book.this_week
+    @books = BookwormBestSellers::Scraper.this_week
     puts "\nBest Sellers - Week of #{current_week}\n\n"
     @books.each.with_index(1) do |book, i|
       puts "#{i}. #{book.title} - #{book.author}"
