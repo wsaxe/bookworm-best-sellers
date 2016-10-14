@@ -1,8 +1,8 @@
 PATH
   remote: .
   specs:
-    bookworm_best_sellers (1.0.0)
-      nokogiri
+    bookworm_best_sellers (1.0.1)
+      nokogiri (~> 1.6.8)
 
 GEM
   remote: https://rubygems.org/
@@ -41,9 +41,9 @@ PLATFORMS
 DEPENDENCIES
   bookworm_best_sellers!
   bundler (~> 1.10)
-  pry
+  pry (~> 0.10.3)
   rake (~> 10.0)
-  rspec
+  rspec (~> 3.4.0)
 
 BUNDLED WITH
    1.12.5
